@@ -9,6 +9,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: 'Free Trial'
+  appName: 'test-nodejs'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -39,16 +46,6 @@ steps:
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
     includeRootFolder: false
-
-trigger:
-- master
-
-variables:
-  # Azure service connection established during pipeline creation
-  azureSubscription: 'Free Trial'
-  appName: 'test-nodejs'
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
 
 - task: AzureWebApp@1 # Add this at the end of your file
   inputs:
